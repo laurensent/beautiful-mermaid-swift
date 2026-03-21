@@ -199,8 +199,10 @@ public class MermaidImageRenderer {
             let context = rendererContext.cgContext
 
             // Fill background
-            context.setFillColor(theme.background.cgColor)
-            context.fill(CGRect(origin: .zero, size: size))
+            if !theme.transparentBackground {
+                context.setFillColor(theme.background.cgColor)
+                context.fill(CGRect(origin: .zero, size: size))
+            }
 
             // Center and scale
             let scaledWidth = graph.bounds.width * fitScale

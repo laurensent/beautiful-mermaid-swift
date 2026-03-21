@@ -42,8 +42,10 @@ public class DiagramRenderer {
         context.saveGState()
 
         // 1. Fill background
-        context.setFillColor(theme.background.cgColor)
-        context.fill(bounds)
+        if !theme.transparentBackground {
+            context.setFillColor(theme.background.cgColor)
+            context.fill(bounds)
+        }
 
         // 2. Draw subgraph backgrounds (recursively for nested subgraphs)
         for subgraph in graph.subgraphs {

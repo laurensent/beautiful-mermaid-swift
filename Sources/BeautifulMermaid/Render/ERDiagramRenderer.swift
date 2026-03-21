@@ -44,8 +44,10 @@ public class ERDiagramRenderer {
         context.saveGState()
 
         // 1. Fill background
-        context.setFillColor(theme.background.cgColor)
-        context.fill(bounds)
+        if !theme.transparentBackground {
+            context.setFillColor(theme.background.cgColor)
+            context.fill(bounds)
+        }
 
         // 2. Render relationship lines (behind boxes)
         for rel in diagram.relationships {

@@ -41,6 +41,10 @@ public struct DiagramTheme: Sendable {
     /// Node corner radius (where applicable)
     public var cornerRadius: CGFloat
 
+    /// When true, renderers skip filling the background, producing a transparent canvas.
+    /// The `background` color is still used for derived color calculations.
+    public var transparentBackground: Bool
+
     public init(
         background: BMColor,
         foreground: BMColor,
@@ -51,7 +55,8 @@ public struct DiagramTheme: Sendable {
         border: BMColor? = nil,
         font: BMFont = BMFont.systemFont(ofSize: 14),
         lineWidth: CGFloat = 1.5,
-        cornerRadius: CGFloat = 8
+        cornerRadius: CGFloat = 8,
+        transparentBackground: Bool = false
     ) {
         self.background = background
         self.foreground = foreground
@@ -63,6 +68,7 @@ public struct DiagramTheme: Sendable {
         self.font = font
         self.lineWidth = lineWidth
         self.cornerRadius = cornerRadius
+        self.transparentBackground = transparentBackground
     }
 
     // MARK: - Derived Colors

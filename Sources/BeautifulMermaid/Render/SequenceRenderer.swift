@@ -35,8 +35,10 @@ public class SequenceRenderer {
         context.saveGState()
 
         // 1. Fill background
-        context.setFillColor(theme.background.cgColor)
-        context.fill(bounds)
+        if !theme.transparentBackground {
+            context.setFillColor(theme.background.cgColor)
+            context.fill(bounds)
+        }
 
         // 2. Draw blocks (background boxes for loop/alt/opt)
         renderBlocks(diagram.blocks, in: context)
