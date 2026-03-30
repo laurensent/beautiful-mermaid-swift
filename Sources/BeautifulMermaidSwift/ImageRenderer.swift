@@ -152,7 +152,9 @@ public final class MermaidImageRenderer {
             ctx.fill(CGRect(origin: .zero, size: pixelSize))
         }
 
-        ctx.scaleBy(x: scale, y: scale)
+        // Flip to y=0-at-top so DiagramRenderer/LabelRenderer coordinate assumptions hold.
+        ctx.translateBy(x: 0, y: pixelSize.height)
+        ctx.scaleBy(x: scale, y: -scale)
         ctx.translateBy(x: -diagBounds.minX, y: -diagBounds.minY)
 
         prepared.render(ctx, diagBounds)
@@ -212,6 +214,10 @@ public final class MermaidImageRenderer {
         let scaledHeight = diagBounds.height * fitScale
         let offsetX = (size.width - scaledWidth) / 2
         let offsetY = (size.height - scaledHeight) / 2
+
+        // Flip to y=0-at-top so DiagramRenderer/LabelRenderer coordinate assumptions hold.
+        ctx.translateBy(x: 0, y: size.height)
+        ctx.scaleBy(x: 1, y: -1)
 
         ctx.translateBy(x: offsetX, y: offsetY)
         ctx.scaleBy(x: fitScale, y: fitScale)
