@@ -64,7 +64,7 @@ public final class MermaidImageRenderer {
             muted: _hex(theme.effectiveMuted()),
             surface: _hex(theme.effectiveSurface()),
             border: _hex(theme.effectiveBorder()),
-            transparent: false
+            transparent: theme.transparent
         )
 
         let svg = try renderMermaidSVG(source, options)
